@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Office Document Management</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div id="login" class="login-wrap">
+  <div class="login-card">
+    <h1>Document Management</h1>
+    <p class="muted">Secure internal office document portal</p>
+    <form id="loginForm">
+      <label>Email<input id="email" type="email" value="admin@example.com" required></label>
+      <label>Password<input id="password" type="password" value="ChangeMe123!" required></label>
+      <button>Sign in</button>
+      <div id="loginError" class="error"></div>
+    </form>
+  </div>
+</div>
+
+<div id="app" class="hidden">
+<header class="topbar">
+  <div><strong>Office DMS</strong><span id="userBadge"></span></div>
+  <button class="ghost" id="logoutBtn">Logout</button>
+</header>
+<div class="layout">
+<aside>
+  <button class="nav active" data-page="documents">📁 Documents</button>
+  <button class="nav admin-nav hidden" data-page="dashboard">📊 Dashboard</button>
+  <button class="nav admin-nav hidden" data-page="users">👥 Users</button>
+  <button class="nav admin-nav hidden" data-page="audit">🧾 Audit Logs</button>
+</aside>
+<main>
+  <section id="documentsPage" class="page">
+    <div class="page-head">
+      <div><h2>Documents</h2><p class="muted">Manage authorized office files.</p></div>
+      <div class="actions"><button id="newFolderBtn">New folder</button><label class="button">Upload<input id="fileInput" type="file" hidden></label></div>
+    </div>
+    <div class="toolbar">
+      <select id="folderSelect"></select>
+      <input id="search" placeholder="Search documents...">
+      <button class="ghost" id="refreshBtn">Refresh</button>
+    </div>
+    <div id="folderGrid" class="folder-grid"></div>
+    <div class="table-wrap"><table><thead><tr><th>Name</th><th>Version</th><th>Size</th><th>Updated</th><th>Actions</th></tr></thead><tbody id="docsBody"></tbody></table></div>
+  </section>
+
+  <section id="dashboardPage" class="page hidden">
+    <div class="page-head"><div><h2>Admin Dashboard</h2><p class="muted">System overview.</p></div></div>
+    <div id="stats" class="stats"></div>
+    <h3>Recent activity</h3><div class="table-wrap"><table><thead><tr><th>User</th><th>Action</th><th>Entity</th><th>Time</th></tr></thead><tbody id="recentBody"></tbody></table></div>
+  </section>
+
+  <section id="usersPage" class="page hidden">
+    <div class="page-head"><div><h2>Users</h2><p class="muted">Create and manage employees.</p></div><button id="addUserBtn">Add user</button></div>
+    <div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead><tbody id="usersBody"></tbody></table></div>
+  </section>
+
+  <section id="auditPage" class="page hidden">
+    <div class="page-head"><div><h2>Audit Logs</h2><p class="muted">Upload, download, login and administration activity.</p></div></div>
+    <div class="table-wrap"><table><thead><tr><th>User</th><th>Action</th><th>Entity</th><th>Details</th><th>Time</th></tr></thead><tbody id="auditBody"></tbody></table></div>
+  </section>
+</main>
+</div>
+</div>
+
+<div id="modal" class="modal hidden"><div class="modal-card"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
+<script src="/app.js"></script>
+</body>
+</html>
